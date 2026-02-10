@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Confesión</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #0f0f0f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 90%;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    #confession {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      min-height: 40px;
+      opacity: 0.9;
+    }
+
+    button {
+      padding: 14px 28px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #yes {
+      background: #ff3366;
+      color: white;
+      margin-right: 10px;
+    }
+
+    #no {
+      background: transparent;
+      color: #aaa;
+      border: 1px solid #444;
+    }
+
+    .final {
+      display: none;
+      font-size: 2rem;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="stage">
+    <h1>¿Querés ser mi San Valentín?</h1>
+    <div id="confession"></div>
+    <button id="yes">Sí</button>
+    <button id="no">No</button>
+  </div>
+
+  <div class="final" id="final">
+    <p>💌 No era una pregunta.</p>
+    <p><br>Cita el 14 de febrero a las 21 hs</p>
+    <p>Ponerse lindo ✨</p>
+    <p><br>Te amo ❤️</p>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const confession = document.getElementById("confession");
+    const stage = document.getElementById("stage");
+    const final = document.getElementById("final");
+
+    let yesSize = 1;
+    let index = 0;
+
+    const messages = [
+      "ok… igual quería que fueras vos",
+      "yo ya te había elegido",
+      "no pasa nada, pero me importás",
+      "capaz no lo sabías, pero esto era en serio",
+      "aunque digas que no, yo siento que sí"
+    ];
+
+    noBtn.addEventListener("click", () => {
+      confession.textContent = messages[index % messages.length];
+      index++;
+
+      yesSize += 0.15;
+      yesBtn.style.transform = `scale(${yesSize})`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      stage.style.display = "none";
+      final.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
